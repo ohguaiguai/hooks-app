@@ -12,6 +12,7 @@ type Props = PropsWithChildren<RouteComponentProps & ReturnType<typeof mapStateT
 
 function Profile(props: Props) {
     let [uploading, setUploading] = useState(false);
+    // 组件渲染完毕之后验证用户信息
     useEffect(() => {
         props.validate();
     }, []);
@@ -29,7 +30,7 @@ function Profile(props: Props) {
             if (info.file.status === 'uploading') {
                 setUploading(true);
             } else if (info.file.status === 'done') {
-                //response就是上传接口返回的响应体 data服务器端返回图片路径
+                // response就是上传接口返回的响应体 data服务器端返回图片路径
                 let { success, data } = info.file.response;
                 if (success) {
                     setUploading(false);

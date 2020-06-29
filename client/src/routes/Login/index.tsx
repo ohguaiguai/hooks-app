@@ -8,6 +8,7 @@ import mapDispatchToProps from '@/store/actions/profile';
 import { FormComponentProps } from 'antd/lib/form';
 import Nav from '@/components/Nav';
 type Props = PropsWithChildren<RouteComponentProps & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps> & FormComponentProps;
+
 function Login(props: Props) {
     const { getFieldDecorator } = props.form;
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

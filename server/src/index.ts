@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
     //指定上传的目录
     destination: path.join(__dirname, 'public', 'uploads'),
     filename(_req: Request, file: Express.Multer.File, callback) {
-        // callback 第二个参数是文件名 时间戳.jpg
+        // callback 第一个参数是错误对象， 第二个参数是文件名 时间戳.jpg
         callback(null, Date.now() + path.extname(file.originalname));
     }
 });
@@ -51,7 +51,7 @@ app.use(errorMiddleware);
 (async function () {
     await mongoose.set('useNewUrlParser', true);
     await mongoose.set('useUnifiedTopology', true);
-    const MONGODB_URL = process.env.MONGODB_URL || `mongodb://localhost/zhufengketangapp`;
+    const MONGODB_URL = process.env.MONGODB_URL || `mongodb://localhost/test`;
     await mongoose.connect(MONGODB_URL);
     await createInitialSliders();
     await createInitialLessons();
@@ -62,7 +62,7 @@ app.use(errorMiddleware);
 })();
 
 async function createInitialSliders() {
-    const sliders = await Slider.find();
+    const sliders = await Slider.find();// 查数据库
     if (sliders.length == 0) {
         const sliders = [
             { url: 'http://www.zhufengpeixun.cn/themes/jianmo2/images/reactnative.png' },
@@ -70,7 +70,7 @@ async function createInitialSliders() {
             { url: 'http://www.zhufengpeixun.cn/themes/jianmo2/images/vue.png' },
             { url: 'http://www.zhufengpeixun.cn/themes/jianmo2/images/wechat.png' },
             { url: 'http://www.zhufengpeixun.cn/themes/jianmo2/images/architect.jpg' }
-        ];
+        ] ; ``
         await Slider.create(sliders);
     }
 }

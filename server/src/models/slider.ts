@@ -5,7 +5,8 @@ export interface SliderDocument extends Document {
 const SliderSchema: Schema<SliderDocument> = new Schema({
     url: String
 }, {
-    timestamps: true, toJSON: {
+    timestamps: true, 
+    toJSON: {
         transform: function (_doc: any, result: any) {
             result.id = result._id;
             delete result._id;

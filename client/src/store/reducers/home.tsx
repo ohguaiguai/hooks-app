@@ -12,7 +12,7 @@ const initialState: HomeState = {
         limit: 5 //限定每次拉的条数
     }
 }
-//immer 不可变数据集  redux-immutable  redux-immer
+//immer: 不可变数据集  redux-immer 代替 redux-immutable 
 export default function (state: HomeState = initialState, action: AnyAction): HomeState {
     switch (action.type) {
         case actionTypes.SET_CURRENT_CATEGORY:

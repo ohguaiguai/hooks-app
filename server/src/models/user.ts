@@ -55,6 +55,8 @@ UserSchema.pre<UserDocument>('save', async function (next: HookNextFunction) {
 //给 User这个模型 扩展了一个方法login
 UserSchema.static('login', async function (this: any,
     username: string, password: string): Promise<UserDocument | null> {
+        console.log('usermodel', this);// Model { User }
+    // TODO this指的谁？
     let user: UserDocument | null = await this.model('User').findOne({ username });
     if (user) {
         //判断用户输入的密码和数据库里存的密码是否能匹配
@@ -74,6 +76,7 @@ UserSchema.methods.getAccessToken = function (this: UserDocument): string {
     let payload: UserPayload = { id: this.id };//payload是放在放在jwt token里存放的数据
     return jwt.sign(payload, process.env.JWT_SECRET_KEY || 'zhufeng', { expiresIn: '1h' });
 }
+// 给模型上添加一个属性
 interface UserModel<T extends Document> extends Model<T> {
     login: (username: string, password: string) => UserDocument | null
 }

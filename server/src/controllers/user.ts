@@ -9,6 +9,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     let { username, password, confirmPassword, email } = req.body;
     try {
         let { valid, errors } = validateRegisterInput(username, password, confirmPassword, email);
+        console.log(valid, errors);
         if (!valid) {
             throw new HttpException(UNPROCESSABLE_ENTITY, '用户提交的数据不正确', errors);
         }

@@ -9,7 +9,7 @@ export default {
     validate() {
         return {
             type: actionTypes.VALIDATE,
-            payload: validate()// validate()返回的是一个promise,中间件promise会进行处理，得到结果之后再次派发动作
+            payload: validate()// validate()返回的是一个promise,中间件promise会进行处理，得到结果之后再次派发该动作
         }
     },
     logout() {
@@ -23,7 +23,7 @@ export default {
         return function (dispatch: any, getState: any) {
             (async function () {
                 try {
-                    //AxiosResponse data才是响应体
+                    //AxiosResponse data才是响应体, 正常我们应该通过result.data.success获取，但是我们可以在拦截器中拦截做一层处理
                     let result: RegisterData = await register<RegisterData>(values);
                     if (result.success) {
                         dispatch(push('/login'));
@@ -43,7 +43,7 @@ export default {
                     //AxiosResponse data才是响应体
                     let result: LoginData = await login<LoginData>(values);
                     if (result.success) {
-                        sessionStorage.setItem('access_token', result.data);
+                        sessionStorage.setItem('access_token', result.data);// 写token
                         dispatch(push('/profile'));
                     } else {
                         message.error('登录失败');

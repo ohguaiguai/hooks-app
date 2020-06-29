@@ -1,5 +1,6 @@
 import request from './index';
 import { SliderData, LessonData } from '@/typings';
+// get<SliderData, SliderData> 因为已经被拦截器处理过了，所以可以写成一样的
 export function getSliders() {
     return request.get<SliderData, SliderData>(`/slider/list`);
 }

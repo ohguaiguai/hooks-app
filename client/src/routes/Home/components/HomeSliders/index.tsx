@@ -8,8 +8,12 @@ type Props = PropsWithChildren<{
 }>
 function HomeSliders(props: Props) {
     useEffect(() => {
+        // 说明是第一次加载， 在这之前仓库里的sliders还是空的
         if (props.sliders.length === 0) {
-            let result = props.getSliders();
+            // 调用props.getSliders() 就相当于调用 dispatch({type: actionTypes.GET_SLIDERS, payload: getSliders()})
+            // (connect方法中的bindActionCreator处理过了)
+            // redux-promise发现action.payload是一个promise就会调用action.payload.then()方法返回一个promise, 之后等待这个promise处理完成, 然后// 在then方法内部再次dispatch({type: actionTypes.GET_SLIDERS, payload: 拿到的result})
+            let result = props.getSliders();// 返回的是一个promise
             console.log('HomeSliders', result);
         }
     }, []);

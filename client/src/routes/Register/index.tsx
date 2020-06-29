@@ -7,7 +7,9 @@ import { RouteComponentProps, Link } from 'react-router-dom';
 import mapDispatchToProps from '@/store/actions/profile';
 import { FormComponentProps } from 'antd/lib/form';
 import Nav from '@/components/Nav';
+
 type Props = PropsWithChildren<RouteComponentProps & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps> & FormComponentProps;
+
 function Register(props: Props) {
     const { getFieldDecorator } = props.form;
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -19,7 +21,7 @@ function Register(props: Props) {
                 console.log(values);
                 //如果说输入合法，则直接调用接口进行注册
                 props.register(values);
-            }
+            } 
         });
     }
     return (
@@ -71,13 +73,13 @@ function Register(props: Props) {
                         htmlType="submit"
                         className="login-form-button"
                     >注册</Button>
-                    或者 <Link to="/login">登录</Link>
+                    或者已有账号<Link to="/login">登录</Link>
                 </Form.Item>
             </Form>
         </>
     )
 }
-//WrappedRegister就是一个高阶组件 ，会向Register组件里传递属性 name没有什么用
+// WrappedRegister就是一个高阶组件 ，会向Register组件里传递属性form name没有什么用
 const WrappedRegister = Form.create({ name: '注册表单' })(Register)
 let mapStateToProps = (state: CombinedState): ProfileState => state.profile;
 export default connect(
