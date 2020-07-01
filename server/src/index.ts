@@ -10,7 +10,7 @@ import errorMiddleware from './middlewares/errorMiddleware';
 import { Slider, Lesson } from './models';
 import * as userController from './controllers/user';
 import * as sliderController from './controllers/slider';
-// import * as lessonController from './controllers/lesson';
+import * as lessonController from './controllers/lesson';
 import multer from 'multer';
 //指定上传文件的存储空间
 const storage = multer.diskStorage({
@@ -40,8 +40,8 @@ app.get('/user/validate', userController.validate);
 app.post('/user/uploadAvatar', upload.single('avatar'), userController.uploadAvatar);
 
 app.get('/slider/list', sliderController.list);
-// app.get('/lesson/list', lessonController.list);
-// app.get('/lesson/:id', lessonController.getLesson);
+app.get('/lesson/list', lessonController.list);
+app.get('/lesson/:id', lessonController.getLesson);
 //如果说没有匹配到任何路由，则会创建一个自定义404错误对象并传递给错误处理中间件
 app.use((_req: Request, _res: Response, next: NextFunction) => {
     const error: HttpException = new HttpException(404, '尚未为此路径分配路由');

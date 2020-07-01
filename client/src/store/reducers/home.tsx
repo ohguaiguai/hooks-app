@@ -18,17 +18,18 @@ export default function (state: HomeState = initialState, action: AnyAction): Ho
         case actionTypes.SET_CURRENT_CATEGORY:
             return { ...state, currentCategory: action.payload };
         case actionTypes.GET_SLIDERS:
-            //  dispatch({ ...action, payload: error, error: true });
+            //  redux-promise处理错误的结果：dispatch({ ...action, payload: error, error: true });
             if (action.error) {// action有了error属性，那说明promise失败了
                 return state;
             } else {
                 return { ...state, sliders: action.payload.data };
             }
         case actionTypes.SET_LESSONS_LOADING:
-            //redux规定reducer永远要返回一个新的状态
+            //redux规定reducer 不要改对象， 永远要返回一个新的状态, 可以使用immer来优化
             state.lessons.loading = action.payload;
             return state;
         case actionTypes.SET_LESSONS:
+            //redux规定reducer 不要改对象， 永远要返回一个新的状态, 因为这样可以利于跟踪新状态，可以使用immer来优化
             state.lessons.loading = false;
             state.lessons.list = [...state.lessons.list, ...action.payload.list];
             state.lessons.hasMore = action.payload.hasMore;
