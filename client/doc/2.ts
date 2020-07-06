@@ -23,5 +23,5 @@ const nextState = produce(baseState, (draftState: any) => {
     draftState[1].done = true
     return draftState;
 })
-console.log(nextState); console.log(nextState);
+console.log(nextState); 
 console.log(baseState === nextState);
