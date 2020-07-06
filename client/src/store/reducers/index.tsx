@@ -17,7 +17,7 @@ let reducers: ReducersMapObject<CombinedState, AnyAction> = {
     cart,
     router: connectRouter(history)
 }
-const rootReducer: Reducer<CombinedState, any> = combineReducers<CombinedState>(produce, reducers);
+const rootReducer: Reducer<CombinedState, any> = combineReducers(produce, reducers);
 /**
 export type Reducer<S = any, A extends Action = AnyAction> = 
 (state: S | undefined,action: A) => S
