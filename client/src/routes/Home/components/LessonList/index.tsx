@@ -15,6 +15,7 @@ function LessonList(props: Props) {
     const [start, setStart] = useState(0);
     let rootFontSize = parseFloat(document.documentElement.style.fontSize);//37.5px
     useEffect(() => {
+        console.log('use effect')
         if (props.lessons.list.length == 0) {
             props.getLessons();
         }
