@@ -40,7 +40,7 @@ function Detail(props: Props) {
     let cart: HTMLAreaElement = document.querySelector('a .anticon.anticon-shopping-cart');
     let cartWidth = cart.offsetWidth; //购物车图标宽度
     let cartHeight = cart.offsetHeight; //购物车图标高度
-    let cartRight = cart.getBoundingClientRect().right; //右连载距离左边的距离
+    let cartRight = cart.getBoundingClientRect().right; //右边框距离左边的距离
     let cartBottom = cart.getBoundingClientRect().bottom; // 底部距离顶部距离
     let clonedCover: HTMLDivElement = cover.cloneNode(true) as HTMLDivElement;
 
